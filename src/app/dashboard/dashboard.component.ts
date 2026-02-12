@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { HighchartsChartComponent, providePartialHighcharts } from 'highcharts-angular';
 
-import heatmap from 'highcharts/modules/heatmap';
-
-
 @Component({
   selector: 'app-dashboard',
   imports: [HighchartsChartComponent],
@@ -11,7 +8,9 @@ import heatmap from 'highcharts/modules/heatmap';
     providePartialHighcharts({
       modules: () => {
         return [
-          import('highcharts/esm/modules/heatmap')
+          import('highcharts/esm/modules/heatmap'),
+          import('highcharts/esm/modules/pictorial'),
+          import('highcharts/esm/modules/variwide')
         ];
       }
     }),
@@ -75,35 +74,66 @@ export class DashboardComponent {
     }]
   };
 
- chartOptions3: Highcharts.Options = { 
-  title: {
-    text: 'My Chart'
-  },
-  series: [{
-    type: 'line',
-    data: [1, 2, 3, 4, 5]
-  }]
- }; 
+  chartOptions3: Highcharts.Options = {
+    title: { text: 'Sector Representation - Pictorial Series' },
+    subtitle: { text: 'Each icon represents investment magnitude per sector' },
+    xAxis: {
+      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
+      title: { text: 'Sectors' }
+    },
+    yAxis: { title: { text: 'Investment Amount (in millions)' } },
+    series: [{
+      type: 'pictorial',
+      // Use a custom SVG path for a bank/building icon. Prefixed with 'path://'
+      // @ts-ignore: Highcharts typings may not include pictorial marker symbol
+      marker: {
+        symbol: 'path://M2 10 L10 2 L18 10 L18 22 L2 22 Z M6 22 L6 14 L10 14 L10 22 Z M12 22 L12 14 L16 14 L16 22 Z'
+      },
+      // The pictorial series will repeat the shape proportional to `y`
+      data: [
+        { name: 'Agriculture', y: 30 },
+        { name: 'IT', y: 50 },
+        { name: 'Automobile', y: 20 },
+        { name: 'Electronics', y: 40 }
+      ],
+      dataLabels: { enabled: true, format: '{point.name}: {point.y}M' }
+    }]
+  };
 
- chartOptions4: Highcharts.Options = { 
-  title: {
-    text: 'My Chart'
-  },
-  series: [{
-    type: 'line',
-    data: [1, 2, 3, 4, 5]
-  }]
- }; 
 
- chartOptions5: Highcharts.Options = { 
-  title: {
-    text: 'My Chart'
-  },
-  series: [{
-    type: 'line',
-    data: [1, 2, 3, 4, 5]
-  }]
- }; 
+
+  // Variwide chart to show investment variance with variable column widths
+  chartOptions4: Highcharts.Options = {
+    chart: { type: 'variwide' },
+    title: { text: 'Investment Variance - Variwide Chart' },
+    xAxis: {
+      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
+      title: { text: 'Sectors' }
+    },
+    yAxis: { title: { text: 'Investment Amount (in millions)' } },
+    series: [{
+      type: 'variwide',
+      data: [
+        { name: 'Agriculture', y: 30, z: 10 },
+        { name: 'IT', y: 50, z: 20 },
+        { name: 'Automobile', y: 20, z: 15 },
+        { name: 'Electronics', y: 40, z: 25 }
+      ],
+      dataLabels: { enabled: true, format: '{point.name}: {point.y}M' }
+    }]
+  };
+
+  chartOptions5: Highcharts.Options = { 
+    title: {
+      text: 'My Chart'
+    },
+    series: [{
+      type: 'line',
+      data: [1, 2, 3, 4, 5]
+    }]
+  }; 
+
+
 
  chartOptions6: Highcharts.Options = { 
   title: {
