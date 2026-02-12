@@ -10,7 +10,8 @@ import { HighchartsChartComponent, providePartialHighcharts } from 'highcharts-a
         return [
           import('highcharts/esm/modules/heatmap'),
           import('highcharts/esm/modules/pictorial'),
-          import('highcharts/esm/modules/variwide')
+          import('highcharts/esm/modules/variwide'),
+          import('highcharts/highcharts-3d')
         ];
       }
     }),
@@ -123,15 +124,32 @@ export class DashboardComponent {
     }]
   };
 
-  chartOptions5: Highcharts.Options = { 
-    title: {
-      text: 'My Chart'
+  chartOptions5: Highcharts.Options = {
+    chart: {
+      type: 'column',
+      options3d: {
+        enabled: true,
+        alpha: 15,
+        beta: 15,
+        depth: 60,
+        viewDistance: 25
+      }
     },
-    series: [{
-      type: 'line',
-      data: [1, 2, 3, 4, 5]
-    }]
-  }; 
+    title: { text: '3D Investment by Sector - Column Chart' },
+    xAxis: {
+      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
+      title: { text: 'Sectors' }
+    },
+    yAxis: { title: { text: 'Investment Amount (in millions)' } },
+    plotOptions: {
+      column: { depth: 40 }
+    },
+    series: [
+      { type: 'column', name: 'Bank A', data: [12, 25, 18, 30] },
+      { type: 'column', name: 'Bank B', data: [20, 18, 22, 28] },
+      { type: 'column', name: 'Bank C', data: [15, 30, 12, 25] }
+    ]
+  };
 
 
 
