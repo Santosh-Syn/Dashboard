@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HighchartsChartComponent, providePartialHighcharts } from 'highcharts-angular';
 
+
 @Component({
   selector: 'app-dashboard',
   imports: [HighchartsChartComponent],
@@ -11,6 +12,9 @@ import { HighchartsChartComponent, providePartialHighcharts } from 'highcharts-a
           import('highcharts/esm/modules/heatmap'),
           import('highcharts/esm/modules/pictorial'),
           import('highcharts/esm/modules/variwide'),
+
+          // import('highcharts/esm/modules/scatter3d'),
+          
           import('highcharts/highcharts-3d')
         ];
       }
@@ -152,7 +156,130 @@ export class DashboardComponent {
   };
 
 
+  /* ***********************************************************************************
+  // // 3D scatter chart used as bubble visualization (x=sector, y=investor group, z=size)
+  // chartOptionsScattered6: Highcharts.Options = {
+  //   chart: {
+  //     type: 'scatter3d',
+  //     options3d: {
+  //       enabled: true,
+  //       alpha: 15,
+  //       beta: 15,
+  //       depth: 250,
+  //       viewDistance: 25
+  //     }
+  //   },
+  //   title: { text: '3D Investment Bubbles (Sector vs Investor)' },
+  //   xAxis: {
+  //     // map sectors to numeric x positions
+  //     categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'] as any,
+  //     title: { text: 'Sectors' }
+  //   },
+  //   yAxis: {
+  //     // map investor groups to numeric y positions
+  //     categories: ['Bank A', 'Bank B', 'Bank C'] as any,
+  //     title: { text: 'Investor Groups' }
+  //   },
+  //   zAxis: { title: { text: 'Investment Size (M)' } },
+  //   tooltip: {
+  //     pointFormat: '{point.name}: {point.z}M'
+  //   },
+  //   series: [{
+  //     // @ts-ignore: scatter3d typings may be missing
+  //     type: 'scatter3d',
+  //     name: 'Investments',
+  //     // data: [x, y, z, name]
+  //     data: [
+  //       { x: 0, y: 0, z: 30, name: 'Bank A - Agriculture', marker: { radius: 8 } },
+  //       { x: 1, y: 0, z: 50, name: 'Bank A - IT', marker: { radius: 12 } },
+  //       { x: 2, y: 0, z: 18, name: 'Bank A - Automobile', marker: { radius: 6 } },
+  //       { x: 3, y: 0, z: 28, name: 'Bank A - Electronics', marker: { radius: 10 } },
 
+  //       { x: 0, y: 1, z: 20, name: 'Bank B - Agriculture', marker: { radius: 7 } },
+  //       { x: 1, y: 1, z: 18, name: 'Bank B - IT', marker: { radius: 6 } },
+  //       { x: 2, y: 1, z: 22, name: 'Bank B - Automobile', marker: { radius: 7 } },
+  //       { x: 3, y: 1, z: 30, name: 'Bank B - Electronics', marker: { radius: 11 } },
+
+  //       { x: 0, y: 2, z: 15, name: 'Bank C - Agriculture', marker: { radius: 6 } },
+  //       { x: 1, y: 2, z: 30, name: 'Bank C - IT', marker: { radius: 12 } },
+  //       { x: 2, y: 2, z: 12, name: 'Bank C - Automobile', marker: { radius: 5 } },
+  //       { x: 3, y: 2, z: 25, name: 'Bank C - Electronics', marker: { radius: 9 } }
+  //     ],
+  //     dataLabels: { enabled: false }
+  //   }]
+  // };
+  ************************************************************************************ */
+
+  
+
+// chartOptions6: Highcharts.Options = {
+//   chart: {
+//     type: 'columnpyramid',
+//     height: 300
+//   },
+//   title: { text: 'Sector-wise Investment (₹ Crores)' },
+//   subtitle: { text: 'Aggregated across all investors and partner banks' },
+
+//   xAxis: {
+//     categories: [
+//       'Agriculture',
+//       'Automobile',
+//       'Electronics',
+//       'Energy',
+//       'Healthcare',
+//       'Technology',
+//       'Real Estate'
+//     ],
+//     title: { text: 'Sectors' }
+//   },
+
+//   yAxis: {
+//     min: 0,
+//     title: { text: 'Investment (₹ Cr)' },
+//     allowDecimals: false
+//   },
+
+//   tooltip: {
+//     pointFormat:
+//       '<b>{series.name}</b><br/>' +
+//       'Sector: <b>{point.category}</b><br/>' +
+//       'Investment: <b>{point.y:.0f} Cr</b>'
+//   },
+
+//   credits: { enabled: false },
+
+//   plotOptions: {
+//     columnpyramid: {
+//       borderWidth: 0,
+//       dataLabels: {
+//         enabled: true,
+//         format: '{y} Cr',
+//         style: { textOutline: 'none' }
+//       }
+//     }
+//   },
+
+//   // Example realistic distribution; adjust as needed
+//   series: [
+//     {
+//       type: 'columnpyramid',
+//       name: 'Total Investment',
+//       color: '#4F46E5',
+//       data: [
+//         120, // Agriculture
+//         180, // Automobile
+//         95,  // Electronics
+//         210, // Energy
+//         160, // Healthcare
+//         250, // Technology
+//         300  // Real Estate
+//       ]
+//     }
+//   ]
+// };
+
+
+/* ***********************************************************************************
  chartOptions6: Highcharts.Options = { 
   title: {
     text: 'My Chart'
@@ -162,5 +289,34 @@ export class DashboardComponent {
     data: [1, 2, 3, 4, 5]
   }]
  }; 
+
+ ************************************************************************************ */
+
+  chartOptions6: Highcharts.Options = {
+    chart: {
+      // Just change this to: 'line', 'column', 'bar', 'spline', 'areaspline', etc.
+      type: 'scatter'
+    },
+    title: {
+      text: 'Investment Distribution - Scatter Chart'
+    },
+    xAxis: {
+      title: { text: 'Sectors' },
+      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics']
+    },
+    yAxis: {
+      title: { text: 'Investment Amount (in millions)' }
+    },
+    series: [{
+      type: 'scatter', // <-- Change this to any core type
+      name: 'Investments',
+      data: [
+        { name: 'Agriculture', y: 30 },
+        { name: 'IT', y: 50 },
+        { name: 'Automobile', y: 20 },
+        { name: 'Electronics', y: 40 }
+      ]
+    }]
+  };
 
 }
