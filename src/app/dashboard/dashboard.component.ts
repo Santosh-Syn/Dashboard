@@ -10,11 +10,27 @@ import { HighchartsChartComponent } from 'highcharts-angular';
 export class DashboardComponent {
 chartOptions1: Highcharts.Options = { 
   title: {
-    text: 'My Chart'
+    text: 'Investment Distribution - Area Chart'
+  },
+  xAxis: {
+    title: {
+      text: 'Sectors'
+    },
+    categories: ['Agriculture', 'IT', 'Automobile', 'Electronics']
+  },
+  yAxis: {
+    title: {
+      text: 'Investment Amount (in millions)'
+    }
   },
   series: [{
-    type: 'line',
-    data: [1, 2, 3, 4, 5]
+    type: 'area',
+    data: [
+      { name: 'Agriculture', y: 30 },
+      { name: 'IT', y: 50 },
+      { name: 'Automobile', y: 20 },
+      { name: 'Electronics', y: 40 }
+    ]
   }]
  }; 
 
