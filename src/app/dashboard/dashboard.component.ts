@@ -309,6 +309,24 @@ export class DashboardComponent {
     },
     series: [{
       type: 'scatter', // <-- Change this to any core type
+
+      marker: {
+        radius: 15,
+        fillColor: 'green',                   // default size
+        states: {
+          hover: {
+            enabled: true,
+            radius: 19,               // <-- grow on hover
+            lineWidthPlus: 0         // keep outline from getting thicker (optional)
+          }
+        }
+      },
+      states: {
+        hover: {
+          enabled: true
+        }
+      },
+
       name: 'Investments',
       data: [
         { name: 'Agriculture', y: 30 },
