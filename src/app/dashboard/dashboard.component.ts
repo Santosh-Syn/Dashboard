@@ -94,31 +94,41 @@ export class DashboardComponent {
     }]
   };
 
-  chartOptions3: Highcharts.Options = {
-    title: { text: 'Sector Representation - Pictorial Series' },
-    subtitle: { text: 'Each icon represents investment magnitude per sector' },
-    xAxis: {
-      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
-      title: { text: 'Sectors' }
-    },
-    yAxis: { title: { text: 'Investment Amount (in millions)' } },
-    series: [{
-      type: 'pictorial',
-      // Use a custom SVG path for a bank/building icon. Prefixed with 'path://'
-      // @ts-ignore: Highcharts typings may not include pictorial marker symbol
-      marker: {
-        symbol: 'path://M2 10 L10 2 L18 10 L18 22 L2 22 Z M6 22 L6 14 L10 14 L10 22 Z M12 22 L12 14 L16 14 L16 22 Z'
-      },
-      // The pictorial series will repeat the shape proportional to `y`
-      data: [
-        { name: 'Agriculture', y: 30 },
-        { name: 'IT', y: 50 },
-        { name: 'Automobile', y: 20 },
-        { name: 'Electronics', y: 40 }
-      ],
-      dataLabels: { enabled: true, format: '{point.name}: {point.y}M' }
-    }]
-  };
+
+
+// A donut chart is a variation of a pie chart where data proportions are shown as 
+// slices of a circle with a hollow center, making it easy to compare 
+// categories while also allowing space in the middle for labels or additional context.
+chartOptions3: Highcharts.Options = {
+  chart: {
+    type: 'pie'
+  },
+  title: {
+    text: 'Sector Representation - Donut Chart Race'
+  },
+  subtitle: {
+    text: 'comparison of investment magnitude per sector'
+  },
+  plotOptions: {
+    pie: {
+      innerSize: '50%', // creates the donut hole
+      dataLabels: {
+        enabled: true,
+        format: '{point.name}: {point.y}M'
+      }
+    }
+  },
+  series: [{
+    type: 'pie',
+    name: 'Investments',
+    data: [
+      { name: 'Agriculture', y: 30 },
+      { name: 'IT', y: 50 },
+      { name: 'Automobile', y: 20 },
+      { name: 'Electronics', y: 40 }
+    ]
+  }]
+};
 
 
 
@@ -318,49 +328,93 @@ chartOptions5: Highcharts.Options = {
 
  ************************************************************************************ */
 
-  chartOptions6: Highcharts.Options = {
-    chart: {
-      // Just change this to: 'line', 'column', 'bar', 'spline', 'areaspline', etc.
-      type: 'scatter'
-    },
-    title: {
-      text: 'Investment Distribution - Scatter Chart'
-    },
-    xAxis: {
-      title: { text: 'Sectors' },
-      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics']
-    },
-    yAxis: {
-      title: { text: 'Investment Amount (in millions)' }
-    },
-    series: [{
-      type: 'scatter', // <-- Change this to any core type
 
+ // Scatter charts display data as points on a Cartesian plane, where each point represents the values of two variables.
+//  Scatter charts are often used to visualize the relationships between data 
+// in two dimensions
+chartOptions6: Highcharts.Options = {
+  chart: {
+    type: 'scatter'
+  },
+  title: {
+    text: 'Investment Distribution - Scatter Chart'
+  },
+  xAxis: {
+    title: { text: 'Sectors' },
+    categories: [
+      'Agriculture', 'IT', 'Automobile', 'Electronics',
+      'Healthcare', 'Energy', 'Real Estate', 'Retail',
+      'Education', 'Telecom'
+    ]
+  },
+  yAxis: {
+    title: { text: 'Investment Amount (in millions)' }
+  },
+  series: [
+    {
+      type: 'scatter',
+      name: 'Bank A',
+      color: '#1f77b4',
       marker: {
-        radius: 15,
-        fillColor: 'green',                   // default size
-        states: {
-          hover: {
-            enabled: true,
-            radius: 19,               // <-- grow on hover
-            lineWidthPlus: 0         // keep outline from getting thicker (optional)
-          }
-        }
+        radius: 3,
+        states: { hover: { enabled: true, radius: 5, lineWidthPlus: 0 } }
       },
-      states: {
-        hover: {
-          enabled: true
-        }
-      },
-
-      name: 'Investments',
       data: [
         { name: 'Agriculture', y: 30 },
         { name: 'IT', y: 50 },
         { name: 'Automobile', y: 20 },
-        { name: 'Electronics', y: 40 }
+        { name: 'Electronics', y: 40 },
+        { name: 'Healthcare', y: 60 },
+        { name: 'Energy', y: 45 },
+        { name: 'Real Estate', y: 70 },
+        { name: 'Retail', y: 25 },
+        { name: 'Education', y: 55 },
+        { name: 'Telecom', y: 35 }
       ]
-    }]
-  };
+    },
+    {
+      type: 'scatter',
+      name: 'Bank B',
+      color: '#ff7f0e',
+      marker: {
+        radius: 3,
+        states: { hover: { enabled: true, radius: 5, lineWidthPlus: 0 } }
+      },
+      data: [
+        { name: 'Agriculture', y: 40 },
+        { name: 'IT', y: 35 },
+        { name: 'Automobile', y: 30 },
+        { name: 'Electronics', y: 50 },
+        { name: 'Healthcare', y: 55 },
+        { name: 'Energy', y: 60 },
+        { name: 'Real Estate', y: 65 },
+        { name: 'Retail', y: 30 },
+        { name: 'Education', y: 45 },
+        { name: 'Telecom', y: 50 }
+      ]
+    },
+    {
+      type: 'scatter',
+      name: 'Bank C',
+      color: '#2ca02c',
+      marker: {
+        radius: 3,
+        states: { hover: { enabled: true, radius: 5, lineWidthPlus: 0 } }
+      },
+      data: [
+        { name: 'Agriculture', y: 25 },
+        { name: 'IT', y: 60 },
+        { name: 'Automobile', y: 40 },
+        { name: 'Electronics', y: 35 },
+        { name: 'Healthcare', y: 50 },
+        { name: 'Energy', y: 70 },
+        { name: 'Real Estate', y: 55 },
+        { name: 'Retail', y: 20 },
+        { name: 'Education', y: 65 },
+        { name: 'Telecom', y: 45 }
+      ]
+    }
+  ]
+};
 
 }
