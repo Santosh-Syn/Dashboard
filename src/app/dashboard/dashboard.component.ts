@@ -62,6 +62,9 @@ export class DashboardComponent {
   }]
  }; 
 
+  // A heatmap is a type of data visualization that represents values using colors 
+  // instead of just numbers. It’s essentially a grid (like a table), 
+  // where each cell’s color intensity corresponds to the magnitude of the value it represents.
   chartOptions2: Highcharts.Options = {
     title: {
       text: 'Sector Performance - Heatmap'
@@ -82,7 +85,7 @@ export class DashboardComponent {
     series: [{
       type: 'heatmap',
       data: [
-        [0, 0, 10],[0, 1, 15],[0, 2, 20],[0, 3, 25],
+        [0, 0, 80],[0, 1, 15],[0, 2, 20],[0, 3, 25],
         [1, 0, 30],[1, 1, 35],[1, 2, 40],[1, 3, 45],
         [2, 0, 50],[2, 1, 55],[2, 2, 60],[2, 3, 65],
         [3, 0, 70],[3, 1, 75],[3, 2, 80],[3, 3, 85]
