@@ -24,6 +24,7 @@ import { HighchartsChartComponent, providePartialHighcharts } from 'highcharts-a
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  // displays volume with area size, and distribution with color intensity
   chartOptions1: Highcharts.Options = { 
   title: {
     text: 'Investment Distribution - Area Chart'
@@ -41,11 +42,22 @@ export class DashboardComponent {
   },
   series: [{
     type: 'area',
+    name: 'Domestic Investment',
     data: [
       { name: 'Agriculture', y: 30 },
       { name: 'IT', y: 50 },
       { name: 'Automobile', y: 20 },
       { name: 'Electronics', y: 40 }
+    ]
+  },
+  {
+    type: 'area',
+    name: 'Foreign Investment',
+    data: [
+      { name: 'Agriculture', y: 15 },
+      { name: 'IT', y: 35 },
+      { name: 'Automobile', y: 25 },
+      { name: 'Electronics', y: 30 }
     ]
   }]
  }; 
