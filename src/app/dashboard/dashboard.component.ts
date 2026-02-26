@@ -123,6 +123,8 @@ export class DashboardComponent {
 
 
   // Variwide chart to show investment variance with variable column widths
+  // we can vary width (z) to represent another dimension of data, such as market share or growth rate, 
+  // while height (y) represents the investment amount. This allows us to visualize both the magnitude and the relative importance of each sector in a single chart.
   chartOptions4: Highcharts.Options = {
     chart: { type: 'variwide' },
     title: { text: 'Investment Variance - Variwide Chart' },
@@ -133,6 +135,7 @@ export class DashboardComponent {
     yAxis: { title: { text: 'Investment Amount (in millions)' } },
     series: [{
       type: 'variwide',
+      color: '#d48ab8f6', // single color applied to all columns
       data: [
         { name: 'Agriculture', y: 30, z: 10 },
         { name: 'IT', y: 50, z: 20 },
@@ -143,32 +146,40 @@ export class DashboardComponent {
     }]
   };
 
-  chartOptions5: Highcharts.Options = {
-    chart: {
-      type: 'column',
-      options3d: {
-        enabled: true,
-        alpha: 15,
-        beta: 15,
-        depth: 60,
-        viewDistance: 25
-      }
-    },
-    title: { text: '3D Investment by Sector - Column Chart' },
-    xAxis: {
-      categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
-      title: { text: 'Sectors' }
-    },
-    yAxis: { title: { text: 'Investment Amount (in millions)' } },
-    plotOptions: {
-      column: { depth: 40 }
-    },
-    series: [
-      { type: 'column', name: 'Bank A', data: [12, 25, 18, 30] },
-      { type: 'column', name: 'Bank B', data: [20, 18, 22, 28] },
-      { type: 'column', name: 'Bank C', data: [15, 30, 12, 25] }
-    ]
-  };
+
+
+// A column comparison chart is a bar-style visualization where multiple series of data 
+// are displayed side by side across categories, making it easy to compare values 
+// (like investments) across different groups or sectors at a glance
+
+chartOptions5: Highcharts.Options = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Sectoral Investment - Column Comparison'
+  },
+  xAxis: {
+    categories: ['Agriculture', 'IT', 'Automobile', 'Electronics'],
+    title: { text: 'Sectors' }
+  },
+  yAxis: {
+    min: 0,
+    title: { text: 'Investment Amount (in millions)' }
+  },
+  plotOptions: {
+    column: {
+      grouping: true,   // ensures side-by-side comparison
+      shadow: false,
+      borderWidth: 0
+    }
+  },
+  series: [
+    { type: 'column', name: 'Bank A', data: [12, 25, 18, 30] },
+    { type: 'column', name: 'Bank B', data: [20, 18, 22, 28] },
+    { type: 'column', name: 'Bank C', data: [15, 30, 12, 25] }
+  ]
+};
 
 
   /* ***********************************************************************************
