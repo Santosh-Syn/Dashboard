@@ -146,6 +146,7 @@ chartOptions3: Highcharts.Options = {
     yAxis: { title: { text: 'Investment Amount (in millions)' } },
     series: [{
       type: 'variwide',
+      name: 'Investments',
       color: '#d48ab8f6', // single color applied to all columns
       data: [
         { name: 'Agriculture', y: 30, z: 10 },
@@ -186,9 +187,9 @@ chartOptions5: Highcharts.Options = {
     }
   },
   series: [
-    { type: 'column', name: 'Bank A', data: [12, 25, 18, 30] },
-    { type: 'column', name: 'Bank B', data: [20, 18, 22, 28] },
-    { type: 'column', name: 'Bank C', data: [15, 30, 12, 25] }
+    { type: 'column', name: 'ICICI Bank', data: [12, 25, 18, 30] },
+    { type: 'column', name: 'IDFC Bank', data: [20, 18, 22, 28] },
+    { type: 'column', name: 'Exim Bank', data: [15, 30, 12, 25] }
   ]
 };
 
@@ -217,7 +218,7 @@ chartOptions6: Highcharts.Options = {
   series: [
     {
       type: 'scatter',
-      name: 'Bank A',
+      name: 'Bank of Newyork',
       color: '#1f77b4',
       marker: {
         radius: 3,
@@ -238,7 +239,7 @@ chartOptions6: Highcharts.Options = {
     },
     {
       type: 'scatter',
-      name: 'Bank B',
+      name: 'U S Bank',
       color: '#ff7f0e',
       marker: {
         radius: 3,
@@ -259,7 +260,7 @@ chartOptions6: Highcharts.Options = {
     },
     {
       type: 'scatter',
-      name: 'Bank C',
+      name: 'Standard Chartered Bank',
       color: '#2ca02c',
       marker: {
         radius: 3,
